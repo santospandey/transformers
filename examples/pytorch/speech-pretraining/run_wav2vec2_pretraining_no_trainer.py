@@ -26,11 +26,12 @@ import datasets
 import torch
 from accelerate import Accelerator
 from accelerate.logging import get_logger
-from datasets import DatasetDict, concatenate_datasets, load_dataset, aiohttp
+from datasets import DatasetDict, concatenate_datasets, load_dataset
 from huggingface_hub import HfApi
 from torch.utils.data.dataloader import DataLoader
 from tqdm.auto import tqdm
 
+import aiohttp
 import transformers
 from transformers import (
     AdamW,
