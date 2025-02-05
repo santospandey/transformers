@@ -26,7 +26,7 @@ import datasets
 import torch
 from accelerate import Accelerator
 from accelerate.logging import get_logger
-from datasets import DatasetDict, concatenate_datasets, load_dataset
+from datasets import DatasetDict, concatenate_datasets, load_dataset, aiohttp
 from huggingface_hub import HfApi
 from torch.utils.data.dataloader import DataLoader
 from tqdm.auto import tqdm
@@ -457,6 +457,7 @@ def main():
             cache_dir=args.cache_dir,
             # trust_remote_code=args.trust_remote_code,
             trust_remote_code=True,
+            storage_options={'client_kwargs': {'timeout': aiohttp.ClientTimeout(total=3600)}}
         )
         datasets_splits.append(dataset_split)
 
